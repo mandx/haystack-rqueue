@@ -7,7 +7,7 @@ setup(
     version='0.1-alpha',
     description='Delegate object update/deletion to background tasks with RQ (http://python-rq.org)',
     author='Armando Pérez',
-    author_email='daniel@toastdriven.com',
+    author_email='gmandx@gmail.com',
     url='http://github.com/mandx/haystack-rqueue',
     packages=[
         'haystack_rqueue',
