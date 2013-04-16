@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.db.models import signals, get_model
 
 from haystack import indexes
@@ -12,10 +11,10 @@ from django_rq import get_queue
 from haystack_rqueue.conf import QUEUE_NAME
 
 
-def get_index(model_class):
+def get_index(model_class, connection='default'):
     """Fetch the model's registered ``SearchIndex`` in a standarized way."""
     try:
-        return connections['default'].get_unified_index().get_index(model_class)
+        return connections[connection].get_unified_index().get_index(model_class)
     except NotHandled:
         return None
 
