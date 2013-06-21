@@ -19,7 +19,7 @@ Haystack and have properly configured Redis and `django-rq`.
 ## Setup
 
 1. Just make shure the `haystack_rqueue` directory is available in your `PYTHON_PATH`. The prefered way is to run `pip install http://github.com/mandx/haystack-rqueue/tarball/master`
-1. Alter all of your `SearchIndex` subclasses to inherit from `haystack_rqueue.indexes.RQueueSearchIndex` (as well as `haystack.indexes.Indexable`).
+1. Include this line in your settings module `HAYSTACK_SIGNAL_PROCESSOR = 'haystack_rqueue.signals.RQueueSignalProcessor'`).
 1. Configure `django-rq` (see the README) and ensure your Redis instance is running and it's accessible.
 1. Start the RQ workers (via `$ ./manage.py rqworker`).
 1. Profit!

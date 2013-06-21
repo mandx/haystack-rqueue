@@ -5,7 +5,7 @@ from distutils.core import setup
 
 setup(
     name='django-haystack-rqueue',
-    version='0.1-alpha',
+    version='0.2-alpha',
     description='Delegate object update/deletion to background tasks with RQ (http://python-rq.org)',
     author='Armando Pérez',
     author_email='gmandx@gmail.com',
