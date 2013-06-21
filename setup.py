@@ -1,15 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 from distutils.core import setup
 
 setup(
-    name='haystack-rqueue',
+    name='django-haystack-rqueue',
     version='0.1-alpha',
     description='Delegate object update/deletion to background tasks with RQ (http://python-rq.org)',
     author='Armando Pérez',
     author_email='gmandx@gmail.com',
     url='http://github.com/mandx/haystack-rqueue',
     install_requires=[
+        'django-haystack>=2.0',
         'django-rq==0.5.1',
     ],
     packages=[

@@ -1,0 +1,11 @@
+{{ obj.get_breed_display }}
+{{ obj.name }}
+{{ obj.owner_last_name }}
+{{ obj.birth_date }}
+{{ obj.bio }}
+{{ obj.public }}
+{{ obj.created }}
+{{ obj.updated }}
+{% for toy in dog.toys.all %}
+{{ toy.name }}
+{% endfor %}
