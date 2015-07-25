@@ -2,9 +2,6 @@ from haystack import indexes
 from haystack_rq_test.models import Dog
 
 
-print '>' * 12
-
-
 # More typical usage involves creating a subclassed `SearchIndex`. This will
 # provide more control over how data is indexed, generally resulting in better
 # search.

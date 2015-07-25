@@ -1,4 +1,10 @@
-from django.db.models import signals, get_model
+from django.db.models import signals
+
+try:
+    from django.apps import apps
+    get_model = apps.get_model
+except ImportError:
+    from django.db.models import get_model
 
 from haystack.signals import BaseSignalProcessor
 
@@ -95,8 +101,7 @@ class RQueueSignalProcessor(BaseSignalProcessor):
             model_class=model_class.__name__,
         )
 
-    def setup(self):
-
+    def connect_signals(self):
         for using in self.connections.connections_info.keys():
             for model_class in self.connections[using].get_unified_index().get_indexed_models():
                 signals.post_save.connect(
@@ -108,6 +113,19 @@ class RQueueSignalProcessor(BaseSignalProcessor):
                 signals.post_delete.connect(
                     self.enqueue_delete, sender=model_class,
                     dispatch_uid=self._get_dispatch_uid(model_class) + '-delete')
+
+    def setup(self):
+        try:
+            from django.apps import apps
+            models_ready = apps.models_ready
+        except ImportError:
+            models_ready = True
+
+        if models_ready:
+            self.connect_signals()
+        else:
+            from haystack_rqueue import HaystackRqueueAppConfig
+            HaystackRqueueAppConfig.init = self.connect_signals
 
     def teardown(self):
         signals.post_save.disconnect(self.enqueue_save)

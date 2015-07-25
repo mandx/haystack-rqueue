@@ -11,8 +11,8 @@ setup(
     author_email='gmandx@gmail.com',
     url='http://github.com/mandx/haystack-rqueue',
     install_requires=[
-        'django-haystack>=2.0',
-        'django-rq==0.5.1',
+        'django-haystack>=2.4',
+        'django-rq>=0.5.1',
     ],
     packages=[
         'haystack_rqueue',
