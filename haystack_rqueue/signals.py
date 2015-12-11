@@ -31,9 +31,9 @@ def split_obj_identifier(obj_identifier):
     if len(bits) < 2:
         return (None, None)
 
-    pk = bits[-1]
+    pk = '.'.join(bits[2:])
     # In case Django ever handles full paths...
-    object_path = '.'.join(bits[:-1])
+    object_path = '.'.join(bits[0:2])
     return (object_path, pk)
 
 
