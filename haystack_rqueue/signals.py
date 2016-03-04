@@ -1,4 +1,5 @@
 from django.db.models import signals
+from django.db import connection
 
 try:
     from django.apps import apps
@@ -54,6 +55,8 @@ def get_index_for_model(model_class, connection=DEFAULT_ALIAS):
 
 
 def index_update_obj(object_id):
+    connection.close()
+
     object_path, pk = split_obj_identifier(object_id)
     if not (object_path or pk):
         return
@@ -74,6 +77,8 @@ def index_update_obj(object_id):
 
 
 def index_delete_obj(object_id):
+    connection.close()
+
     object_path, pk = split_obj_identifier(object_id)
     if not (object_path or pk):
         return
